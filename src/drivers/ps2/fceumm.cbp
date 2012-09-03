@@ -1,0 +1,851 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="fceumm" />
+		<Option makefile_is_custom="1" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="clean">
+				<Option output="fceumm" prefix_auto="1" extension_auto="1" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+			</Target>
+			<Target title="all">
+				<Option output="fceumm" prefix_auto="1" extension_auto="1" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+			</Target>
+			<Target title="install">
+				<Option output="fceumm" prefix_auto="1" extension_auto="1" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+			</Target>
+		</Build>
+		<Unit filename="../../boards/01-222.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/103.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/106.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/108.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/112.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/116.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/117.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/120.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/121.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/12in1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/15.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/151.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/156.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/164.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/168.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/17.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/170.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/175.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/177.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/178.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/18.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/183.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/185.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/186.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/187.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/189.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/193.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/199.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/208.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/222.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/225.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/23.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/235.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/253.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/34.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/3d-block.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/411120-c.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/43.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/57.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/603-5052.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/68.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/8157.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/82.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/8237.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/830118C.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/88.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/90.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/91.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/95.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/96.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/99.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/KS7012.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/KS7013.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/KS7017.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/KS7030.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/KS7031.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/KS7032.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/KS7037.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/KS7057.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/SA-9602B.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/__dummy_mapper.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/__serial.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/__serial.h" />
+		<Unit filename="../../boards/a9746.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/ac-08.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/addrlatch.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/ax5705.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/bandai.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/bb.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/bmc13in1jy110.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/bmc42in1r.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/bmc64in1nr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/bmc70in1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/bonza.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/bs-5.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/cityfighter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/copyfami_emu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/copyfami_hwi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/dance2000.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/datalatch.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/deirom.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/dream.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/edu2000.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/famicombox.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/fk23c.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/ghostbusters63in1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/gs-2004.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/gs-2013.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/h2288.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/karaoke.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/kof97.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/konami-qtai.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/le05.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/lh32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/lh53.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/malee.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/mapinc.h" />
+		<Unit filename="../../boards/mmc1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/mmc3.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/mmc3.h" />
+		<Unit filename="../../boards/mmc5.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/n106.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/n625092.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/novel.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/onebus.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/pec-586.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/sachen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/sc-127.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/sheroes.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/sl1632.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/smb2j.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/subor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/super24.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/supervision.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/t-227-1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/t-262.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/tengen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/tf-1201.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/transformer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/vrc7.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../boards/yoko.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../cart.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../cart.h" />
+		<Unit filename="../../cheat.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../cheat.h" />
+		<Unit filename="../../crc32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../crc32.h" />
+		<Unit filename="../../debug.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../debug.h" />
+		<Unit filename="../../drawing.h" />
+		<Unit filename="../../driver.h" />
+		<Unit filename="../common/args.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../common/args.h" />
+		<Unit filename="../common/cheat.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../common/cheat.h" />
+		<Unit filename="../common/config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../common/config.h" />
+		<Unit filename="../common/hq2x.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../common/hq2x.h" />
+		<Unit filename="../common/hq3x.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../common/hq3x.h" />
+		<Unit filename="../common/scale2x.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../common/scale2x.h" />
+		<Unit filename="../common/scale3x.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../common/scale3x.h" />
+		<Unit filename="../common/scalebit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../common/scalebit.h" />
+		<Unit filename="../common/vidblit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../common/vidblit.h" />
+		<Unit filename="../../endian.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../endian.h" />
+		<Unit filename="../../fceu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../fceu.h" />
+		<Unit filename="../../fceustr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../fceustr.h" />
+		<Unit filename="../../fcoeffs.h" />
+		<Unit filename="../../fds.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../fds.h" />
+		<Unit filename="../../file.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../file.h" />
+		<Unit filename="../../filter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../filter.h" />
+		<Unit filename="../../fir/Makefile" />
+		<Unit filename="../../fir/c44100ntsc.coef" />
+		<Unit filename="../../fir/c44100ntsc.h" />
+		<Unit filename="../../fir/c44100ntsc.scm" />
+		<Unit filename="../../fir/c44100pal.coef" />
+		<Unit filename="../../fir/c44100pal.h" />
+		<Unit filename="../../fir/c44100pal.scm" />
+		<Unit filename="../../fir/c48000ntsc.coef" />
+		<Unit filename="../../fir/c48000ntsc.h" />
+		<Unit filename="../../fir/c48000ntsc.scm" />
+		<Unit filename="../../fir/c48000pal.coef" />
+		<Unit filename="../../fir/c48000pal.h" />
+		<Unit filename="../../fir/c48000pal.scm" />
+		<Unit filename="../../fir/c96000ntsc.coef" />
+		<Unit filename="../../fir/c96000ntsc.h" />
+		<Unit filename="../../fir/c96000ntsc.scm" />
+		<Unit filename="../../fir/c96000pal.coef" />
+		<Unit filename="../../fir/c96000pal.h" />
+		<Unit filename="../../fir/c96000pal.scm" />
+		<Unit filename="../../fir/toh.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../general.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../general.h" />
+		<Unit filename="../../git.h" />
+		<Unit filename="../../ines-bad.h" />
+		<Unit filename="../../ines-correct.h" />
+		<Unit filename="../../ines.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../ines.h" />
+		<Unit filename="../../input.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../input.h" />
+		<Unit filename="../../input/arkanoid.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../input/bbox.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../input/bworld.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../input/cursor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../input/fkb.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../input/fkb.h" />
+		<Unit filename="../../input/ftrainer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../input/hypershot.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../input/mahjong.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../input/mouse.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../input/oekakids.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../input/pads.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../input/pec586kb.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../input/pec586kb.h" />
+		<Unit filename="../../input/powerpad.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../input/quiz.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../input/shadow.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../input/share.h" />
+		<Unit filename="../../input/suborkb.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../input/suborkb.h" />
+		<Unit filename="../../input/toprider.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../input/zapper.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/201.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/202.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/203.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/204.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/21.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/212.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/213.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/214.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/215.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/217.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/22.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/227.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/228.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/229.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/230.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/231.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/232.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/234.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/241.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/242.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/244.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/246.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/24and26.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/25.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/255.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/27.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/33.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/40.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/41.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/42.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/46.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/50.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/51.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/59.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/6.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/61.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/62.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/65.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/67.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/69.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/71.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/72.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/73.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/75.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/76.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/77.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/79.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/80.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/85.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/emu2413.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/emu2413.h" />
+		<Unit filename="../../mappers/emutypes.h" />
+		<Unit filename="../../mappers/mapinc.h" />
+		<Unit filename="../../mappers/mmc2and4.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../mappers/vrc7tone.h" />
+		<Unit filename="../../md5.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../md5.h" />
+		<Unit filename="../../memory.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../memory.h" />
+		<Unit filename="../../movie.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../movie.h" />
+		<Unit filename="../../netplay.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../netplay.h" />
+		<Unit filename="../../nsf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../nsf.h" />
+		<Unit filename="../../ops.h" />
+		<Unit filename="../../palette.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../palette.h" />
+		<Unit filename="../../palettes/conv.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../palettes/palettes.h" />
+		<Unit filename="../../palettes/rp2c04001.h" />
+		<Unit filename="../../palettes/rp2c04002.h" />
+		<Unit filename="../../palettes/rp2c04003.h" />
+		<Unit filename="../../palettes/rp2c05004.h" />
+		<Unit filename="../../ppu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../ppu.h" />
+		<Unit filename="../../pputile.h" />
+		<Unit filename="../../ppuview.h" />
+		<Unit filename="../../sound.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../sound.h" />
+		<Unit filename="../../state.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../state.h" />
+		<Unit filename="../../types.h" />
+		<Unit filename="../../unif.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../unif.h" />
+		<Unit filename="../../unzip.h" />
+		<Unit filename="../../video.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../video.h" />
+		<Unit filename="../../vsuni.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../vsuni.h" />
+		<Unit filename="../../wave.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../wave.h" />
+		<Unit filename="../../x6502.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../x6502.h" />
+		<Unit filename="../../x6502struct.h" />
+		<Unit filename="../../zlib/adler32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../zlib/compress.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../zlib/crc32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../zlib/deflate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../zlib/deflate.h" />
+		<Unit filename="../../zlib/gzio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../zlib/infblock.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../zlib/infblock.h" />
+		<Unit filename="../../zlib/infcodes.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../zlib/infcodes.h" />
+		<Unit filename="../../zlib/inffast.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../zlib/inffast.h" />
+		<Unit filename="../../zlib/inffixed.h" />
+		<Unit filename="../../zlib/inflate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../zlib/inftrees.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../zlib/inftrees.h" />
+		<Unit filename="../../zlib/infutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../zlib/infutil.h" />
+		<Unit filename="../../zlib/trees.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../zlib/trees.h" />
+		<Unit filename="../../zlib/uncompr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../zlib/unzip.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../zlib/unzip.h" />
+		<Unit filename="../../zlib/zconf.h" />
+		<Unit filename="../../zlib/zlib.h" />
+		<Unit filename="../../zlib/zutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../zlib/zutil.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

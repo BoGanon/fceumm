@@ -32,8 +32,9 @@
 
 #include "general.h"
 #include "state.h"
+#ifdef MOVIE
 #include "movie.h"
-
+#endif /* MOVIE */
 #include "driver.h"
 
 #include "md5.h"
@@ -60,8 +61,10 @@ void FCEUI_SetDirOverride(int which, char *n)
  {
   if(which==FCEUIOD_STATE)
    FCEUSS_CheckStates();
+#ifdef MOVIE
   else if(which == FCEUIOD_MOVIE)
    FCEUMOV_CheckMovies();
+#endif
  }
 }
 

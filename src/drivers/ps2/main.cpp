@@ -26,8 +26,15 @@
 #else
 #define SAMPLERATE 0
 #endif
+
 static int is_loaded = 0;
-unsigned char *ClutBuf = NULL;
+
+extern unsigned char *ClutBuf;
+void ps2_video_init(void);
+void ps2_video_render(const uint8*);
+void ps2_video_deinit(void);
+void ps2_audio_init(void);
+void ps2_audio_play(const int32*, int32);
 
 // AspiringSquire's Real Palette (C)
 /*
@@ -61,177 +68,14 @@ u32 nes_palette[64] =
 // Prototype for link in unistd.h
 extern "C" int link(const char *oldpath, const char *newpath)
 {
-	printf("link () not implemented\n");
+	printf("link() not implemented\n");
     return -1;
 }
 
-int ps2_close_game(void)
+int ps2_fceu_init(void)
 {
+	int ret;
 
-	browser_reset_path();
-
-	video_packets_free();
-
-	if(!is_loaded) {
-		return 0;
-	}
-
-	FCEUI_CloseGame();
-
-	is_loaded = 0;
-
-	return 1;
-}
-
-int ps2_load_game(const char *path)
-{
-	settings_t settings;
-
-	settings = settings_get();
-
-	// customize for different modes
-	video_packets_init();
-
-	video_init_framebuffer(256,256);
-
-	video_init_texbuffer(256,256,GS_PSM_8,GS_PSM_24);
-
-	video_init_screen(0,0,256,240,0,settings.display.mode);
-	video_init_draw_env(256,240);
-
-	video_send_packet(256,256,(void*)XBuf,(void*)ClutBuf);
-	video_draw_packet(256,256,GS_PSM_8,GS_PSM_24);
-#ifdef SOUND_ON
-	struct audsrv_fmt_t format;
-	format.bits = 16;
-	format.freq = 4800;
-	format.channels = 1;
-	audsrv_set_format(&format);
-    audsrv_set_volume(100);
-#endif
-	if(!FCEUI_LoadGame(path))
-	{
-		ps2_close_game();
-		return 0;
-	}
-
-	//ParseGIInput(GameInfo);
-	//RefreshThrottleFPS();
-
-	//if(!DriverInitialize(GameInfo)) {
-	//	return(0);
-	//}
-
-	// set pal/ntsc
-	//int id;
-	//g_config->getOption("SDL.PAL", &id);
-
-	//if(id)
-		//FCEUI_SetVidSystem(1);
-	//else
-	FCEUI_SetVidSystem(NTSC_VID);
-
-	FCEUI_SetGameGenie(0);
-	FCEUI_DisableSpriteLimitation(1);
-#ifdef SOUND_ON
-	FCEUI_SetSoundVolume(1024);
-#else
-	FCEUI_SetSoundVolume(0);
-#endif
-	FCEUI_SetSoundQuality(0);
-	FCEUI_SetLowPass(1);
-	FCEUI_Sound(SAMPLERATE);
-	//FCEUI_SetShowFPS(true);
-
-	is_loaded = 1;
-
-	//FCEUD_NetworkConnect();
-
-	return 1;
-}
-
-void RenderFrame(const uint8 *frame)
-{
-
-	// Creates the dmachains, only needs to be done once
-	// upload texture and clut
-	video_send_texture();
-	video_draw_texture();
-
-    /* vsync and flip buffer */
-    //video_sync_wait();
-}
-#ifdef SOUND_ON
-short int soundbuf[2000];
-void inline OutputSound(const int32 *tmpsnd, int32 ssize)
-{
-    //used as an example from the windows driver
-    /*static int16 MBuffer[2 * 96000 / 50];  // * 2 for safety.
-    int P;
-
-    if(!bittage) {
-        for(P=0;P<Count;P++)
-            *(((uint8*)MBuffer)+P)=((int8)(Buffer[P]>>8))^128;
-        RawWrite(MBuffer,Count);
-    }
-    else {
-        for(P=0;P<Count;P++)
-        MBuffer[P]=Buffer[P];
-        //FCEU_printf("Pre: %d\n",RawCanWrite() / 2);
-        RawWrite(MBuffer,Count * 2);
-        //FCEU_printf("Post: %d\n",RawCanWrite() / 2);
-     }*/
-
-    int32 i = ssize;
-    //s16 ssound[ssize]; //no need for an 2*ssized 8bit array with this
-    //for (i=0;i<=ssize;i++) {
-    while(i--) {
-        //something[i]=((tmpsnd[i]>>8))^128; //for 8bit sound
-        soundbuf[i]=tmpsnd[i];
-    }
-    audsrv_play_audio((const char *)soundbuf,ssize<<1);
-}
-#endif
-void FCEUD_Update(const uint8 *XBuf, const int32 *tmpsnd, int32 ssize)
-{
-        RenderFrame(XBuf);
-#ifdef SOUND_ON
-        OutputSound(tmpsnd, ssize);
-#endif
-}
-
-void DoFun()
-{
-    uint8 *gfx;
-    int32 *sound;
-    int32 ssize;
-
-    //while(!Get_NESInput() )
-    while(1)
-    {
-        FCEUI_Emulate(&gfx, &sound, &ssize, 0);
-        FCEUD_Update(gfx, sound, ssize);
-    }
-
-	ps2_close_game();
-}
-
-
-int main(int argc, char **argv)
-{
-    int ret;
-
-
-	// Stops hardlocking when cin/cerr/cout etc. are used
-	std::ios::sync_with_stdio(false);
-
-	// Parses args for bootpath
-	parse_args(argc,argv);
-
-	init("fceux.cfg");
-	init_sound_modules(NULL);
-
-	// Move this to a driver initializing function
 	// Allocate 8 bpp screen buffer
 	XBuf = (uint8*)memalign(128,1*256*256);
 
@@ -253,24 +97,6 @@ int main(int argc, char **argv)
 	// Initialize to 0
 	memset(ClutBuf,0,16*16*4);
 
-	// Change color format to BGR888
-	// And fill extra entries for GS Clut Buffer
-	// with copied versions of the palette
-	// Maybe: Add 0x80 or lum value to final byte
-#if 0
-	int r,g,b;
-    for(int i = 0; i< 64 ; i++ )
-    {
-        r =  ( NesPalette[ i ] & 0xff0000 )>>16;
-        g =  ( NesPalette[ i ] & 0xff00 )>>8;
-        b =  ( NesPalette[ i ] & 0xff )<<0;
-        ClutBuf[ i ] = ((b<<16)|(g<<8)|(r<<0));
-        ClutBuf[i+64] = ((b<<16)|(g<<8)|(r<<0));
-        ClutBuf[i+128] = ((b<<16)|(g<<8)|(r<<0));
-        ClutBuf[i+192] = ((b<<16)|(g<<8)|(r<<0));
-    }
-#endif
-
 	// Initialize FCEUX
     ret = FCEUI_Initialize();
 
@@ -281,6 +107,110 @@ int main(int argc, char **argv)
     }
 
 	FCEUD_Message("Initialization complete!\n");
+
+	return 0;
+
+}
+
+void ps2_close_game(void)
+{
+
+	browser_reset_path();
+	ps2_video_deinit();
+
+	if(is_loaded)
+	{
+		FCEUI_CloseGame();
+	}
+
+	is_loaded = 0;
+
+}
+
+int ps2_load_game(const char *path)
+{
+
+	ps2_video_init();
+
+	if(!FCEUI_LoadGame(path))
+	{
+		ps2_close_game();
+		return -1;
+	}
+
+	// set pal/ntsc
+	FCEUI_SetVidSystem(NTSC_VID);
+	FCEUI_SetGameGenie(0);
+	FCEUI_DisableSpriteLimitation(1);
+	FCEUI_SetSoundVolume(1024);
+	FCEUI_SetSoundQuality(0);
+	FCEUI_SetLowPass(1);
+	FCEUI_Sound(SAMPLERATE);
+
+	is_loaded = 1;
+
+	//FCEUD_NetworkConnect();
+
+	return 0;
+}
+
+void ps2_video_render(const uint8 *frame)
+{
+
+	// upload texture and clut
+	video_send_texture();
+	video_draw_texture();
+
+    /* vsync and flip buffer */
+    video_sync_wait();
+}
+
+void FCEUD_Update(const uint8 *XBuf, const int32 *tmpsnd, int32 ssize)
+{
+
+        ps2_video_render(XBuf);
+
+        ps2_audio_play(tmpsnd, ssize);
+
+}
+
+void DoFun()
+{
+    uint8 *gfx;
+    int32 *sound;
+    int32 ssize;
+
+    //while(!Get_NESInput() )
+    while(1)
+    {
+        FCEUI_Emulate(&gfx, &sound, &ssize, 0);
+        FCEUD_Update(gfx, sound, ssize);
+    }
+
+}
+
+
+int main(int argc, char **argv)
+{
+    int ret;
+
+
+	// Stops hardlocking when cin/cerr/cout etc. are used
+	std::ios::sync_with_stdio(false);
+
+	// Parses args for bootpath
+	parse_args(argc,argv);
+
+	init("fceux.cfg");
+	init_sound_modules(NULL);
+
+	ret = ps2_fceu_init();
+	ps2_audio_init();
+
+	if(ret < 0)
+	{
+		printf("Initialization failed\n");
+	}
 
 	while(1)
 	{
@@ -296,6 +226,8 @@ int main(int argc, char **argv)
 		{
 			DoFun();
 		}
+
+		ps2_close_game();
 
 	}
 

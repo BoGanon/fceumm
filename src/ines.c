@@ -108,10 +108,10 @@ static void iNESGI(int h)
      FCEU_SaveGameSave(&iNESCart);
 
      if(iNESCart.Close) iNESCart.Close();
-     if(ROM) {free(ROM);ROM=0;}
-     if(VROM) {free(VROM);VROM=0;}
+     if(ROM) {free(ROM);ROM=NULL;}
+     if(VROM) {free(VROM);VROM=NULL;}
      if(MapClose) MapClose();
-     if(trainerpoo) {FCEU_gfree(trainerpoo);trainerpoo=0;}
+     if(trainerpoo) {FCEU_gfree(trainerpoo);trainerpoo=NULL;}
     }
     break;
      }
@@ -366,7 +366,7 @@ static void CheckHInfo(void)
     {
      VROM_size=0;
      free(VROM);
-     VROM=0;
+     VROM=NULL;
      tofix|=8;
     }
     if(MapperNo!=(moo[x].mapper&0xFF))

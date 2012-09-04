@@ -271,7 +271,7 @@ void FCEU_FlushGameCheats(FILE *override, int nosave)
  if(CheatComp)
  {
   free(CheatComp);
-  CheatComp=0;
+  CheatComp=NULL;
  }
  if((!savecheats || nosave) && !override)  /* Always save cheats if we're being overridden. */
  {
@@ -286,7 +286,7 @@ void FCEU_FlushGameCheats(FILE *override, int nosave)
     free(last);
     if(!next) break;
    }
-   cheats=cheatsl=0;
+   cheats=cheatsl=NULL;
   }
  }
  else

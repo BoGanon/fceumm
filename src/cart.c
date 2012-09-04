@@ -452,7 +452,7 @@ void OpenGenie(void)
   {
    FCEU_PrintError("Error opening Game Genie ROM image!");
    free(GENIEROM);
-   GENIEROM=0;
+   GENIEROM=NULL;
    return;
   }
   if(fread(GENIEROM,1,16,fp)!=16)
@@ -460,7 +460,7 @@ void OpenGenie(void)
    grerr:
    FCEU_PrintError("Error reading from Game Genie ROM image!");
    free(GENIEROM);
-   GENIEROM=0;
+   GENIEROM=NULL;
    fclose(fp);
    return;
   }
@@ -502,7 +502,7 @@ void FCEU_KillGenie(void)
  if(GENIEROM)
  {
   free(GENIEROM);
-  GENIEROM=0;
+  GENIEROM=NULL;
  }
 }
 

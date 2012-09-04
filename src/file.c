@@ -145,7 +145,7 @@ static MEMWRAP *MakeMemWrap(void *tz, int type)
   if(!(tmp->data=(uint8*)FCEU_malloc(tmp->size)))
   {
    free(tmp);
-   tmp=0;
+   tmp=NULL;
    goto doret;
   }
   fread(tmp->data,1,tmp->size,(FILE *)tz);
@@ -159,7 +159,7 @@ static MEMWRAP *MakeMemWrap(void *tz, int type)
   if(!(tmp->data=(uint8 *)FCEU_malloc(tmp->size)))
   {
    free(tmp);
-   tmp=0;
+   tmp=NULL;
    goto doret;
   }
   gzread((gzFile)tz,tmp->data,tmp->size);
@@ -173,7 +173,7 @@ static MEMWRAP *MakeMemWrap(void *tz, int type)
   if(!(tmp->data=(uint8 *)FCEU_malloc(ufo.uncompressed_size)))
   {
    free(tmp);
-   tmp=0;
+   tmp=NULL;
    goto doret;
   }
   unzReadCurrentFile(tz,tmp->data,ufo.uncompressed_size);
@@ -206,7 +206,6 @@ FCEUFILE * FCEU_fopen(const char *path, const char *ipsfn, char *mode, char *ext
  FILE *ipsfile=0;
  FCEUFILE *fceufp;
  void *t;
- void *new_fp;
 
  if(strchr(mode,'r'))
   ipsfile=FCEUD_UTF8fopen(ipsfn,"rb");
@@ -234,9 +233,9 @@ FCEUFILE * FCEU_fopen(const char *path, const char *ipsfn, char *mode, char *ext
       if(!ext)
       {
        if(!strcasecmp(za,".nes") || !strcasecmp(za,".fds") ||
-    !strcasecmp(za,".nsf") || !strcasecmp(za,".unf") ||
-    !strcasecmp(za,".nez"))
-  break;
+        !strcasecmp(za,".nsf") || !strcasecmp(za,".unf") ||
+		!strcasecmp(za,".nez"))
+        break;
       }
       else if(!strcasecmp(za,ext))
        break;
@@ -286,22 +285,23 @@ FCEUFILE * FCEU_fopen(const char *path, const char *ipsfn, char *mode, char *ext
    fclose((FILE *)t);
   else      /* Probably gzip */
   {
-   //int fd;
+/*
+   int fd;
 
-   //fd = dup(fileno( (FILE *)t));
+   fd = dup(fileno( (FILE *)t));
 
-   //fclose(t);
+   fclose(t);
 
-   lseek(((FILE*)t)->fd, 0, SEEK_SET);
+   lseek(fd, 0, SEEK_SET);
 
-   if((new_fp=gzdopen(((FILE *)t)->fd,mode)))
+   if((t=gzdopen(fd,mode)))
    {
     fceufp->type=1;
-    fceufp->fp=new_fp;
+    fceufp->fp=t;
     if(ipsfile)
     {
-     fceufp->fp=MakeMemWrap(new_fp,1);
-     gzclose((gzFile)new_fp);
+     fceufp->fp=MakeMemWrap(t,1);
+     gzclose((gzFile)t);
 
      if(fceufp->fp)
      {
@@ -314,6 +314,7 @@ FCEUFILE * FCEU_fopen(const char *path, const char *ipsfn, char *mode, char *ext
     }
     return(fceufp);
    }
+*/
    fclose((FILE*)t);
   }
 

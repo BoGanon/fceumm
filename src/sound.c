@@ -1140,13 +1140,13 @@ void SetSoundVariables(void)
    wlookup1[0]=0;
    for(x=1;x<32;x++)
    {
-    wlookup1[x]=(double)16*16*16*4*95.52/((double)8128/(double)x+100);
+    wlookup1[x]=(uint32)((double)16*16*16*4*95.52/((double)8128/(double)x+100));
     if(!FSettings.soundq) wlookup1[x]>>=4;
    }
    wlookup2[0]=0;
    for(x=1;x<203;x++)
    {
-    wlookup2[x]=(double)16*16*16*4*163.67/((double)24329/(double)x+100);
+    wlookup2[x]=(uint32)((double)16*16*16*4*163.67/((double)24329/(double)x+100));
     if(!FSettings.soundq) wlookup2[x]>>=4;
    }
    if(FSettings.soundq>=1)

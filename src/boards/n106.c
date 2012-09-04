@@ -163,7 +163,7 @@ static void FixCache(int a,int V)
     case 0x04:FreqCache[w]&=~0x00030000;FreqCache[w]|=(V&3)<<16;
               LengthCache[w]=(8-((V>>2)&7))<<2;
               break;
-    case 0x07:EnvCache[w]=(double)(V&0xF)*576716;break;
+    case 0x07:EnvCache[w]=(uint32)((double)(V&0xF)*576716);break;
   }
 }
 
@@ -293,7 +293,7 @@ static void DoNamcoSoundHQ(void)
       lengo=LengthCache[P];
 
       duff2=FetchDuff(P,envelope);
-      for(V=CVBC<<1;V<SOUNDTS<<1;V++)
+      for(V=CVBC<<1;V<(int)SOUNDTS<<1;V++)
       {
         WaveHi[V>>1]+=duff2;
         if(!vco)
@@ -333,7 +333,7 @@ static void DoNamcoSound(int32 *Wave, int Count)
 
       {
         int c=((IRAM[0x7F]>>4)&7)+1;
-        inc=(long double)(FSettings.SndRate<<15)/((long double)freq*21477272/((long double)0x400000*c*45));
+        inc=(int32)((long double)(FSettings.SndRate<<15)/((long double)freq*21477272/((long double)0x400000*c*45)));
       }
 
       duff=IRAM[(((IRAM[0x46+(P<<3)]+PlayIndex[P])&0xFF)>>1)];

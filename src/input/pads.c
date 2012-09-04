@@ -111,7 +111,9 @@ static void FP_FASTAPASS(3) UpdateGP(int w, void *data, int arg)
 #ifdef NETWORK
   if(FCEUnetplay) NetplayUpdate(joy);
 #endif
+#ifdef MOVIE
   FCEUMOV_AddJoy(joy);
+#endif
   if(FCEUGameInfo->type==GIT_VSUNI)
     FCEU_VSUniSwap(&joy[0],&joy[1]);
 }

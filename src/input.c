@@ -25,8 +25,9 @@
 
 #include "fceu.h"
 #include "netplay.h"
+#ifdef MOVIE
 #include "movie.h"
-
+#endif /* MOVIE */
 #include "input.h"
 #include "vsuni.h"
 #include "fds.h"
@@ -428,10 +429,14 @@ void FCEU_QSimpleCommand(int cmd)
   else
 #endif
   {
+#ifdef MOVIE
     if(!FCEUMOV_IsPlaying())
       FCEU_DoSimpleCommand(cmd);
     else
       FCEUMOV_AddCommand(cmd);
+#else
+    FCEU_DoSimpleCommand(cmd);
+#endif /* MOVIE */
   }
 }
 

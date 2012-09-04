@@ -100,8 +100,8 @@ void NSFGI(int h)
  switch(h)
  {
  case GI_CLOSE:
-  if(NSFDATA) {free(NSFDATA);NSFDATA=0;}
-  if(ExWRAM) {free(ExWRAM);ExWRAM=0;}
+  if(NSFDATA) {free(NSFDATA);NSFDATA=NULL;}
+  if(ExWRAM) {free(ExWRAM);ExWRAM=NULL;}
   if(NSFHeader.SoundChip&1) {
 //   NSFVRC6_Init();
   } else if(NSFHeader.SoundChip&2) {
@@ -434,8 +434,8 @@ void DrawNSF(uint8 *XBuf)
     uint32 xp,yp;
 
     r=(Bufpl[(x*l)>>8]*mul)>>14;
-    xp=128+r*cos(x*M_PI*2/256);
-    yp=120+r*sin(x*M_PI*2/256);
+    xp=(uint32)(128+r*cos(x*M_PI*2/256));
+    yp=(uint32)(120+r*sin(x*M_PI*2/256));
     xp&=255;
     yp%=240;
     XBuf[xp+yp*256]=3;
@@ -458,8 +458,8 @@ void DrawNSF(uint8 *XBuf)
     r=sqrt(xc*xc+yc*yc);
 
     t+=theta;
-    m=128+r*cos(t);
-    n=120+r*sin(t);
+    m=(uint32)(128+r*cos(t));
+    n=(uint32)(120+r*sin(t));
 
     if(m<256 && n<240)
      XBuf[m+n*256]=3;
@@ -477,8 +477,8 @@ void DrawNSF(uint8 *XBuf)
     r=sqrt(xc*xc+yc*yc);
 
     t+=theta;
-    m=128+r*cos(t);
-    n=120+r*sin(t);
+    m=(uint32)(128+r*cos(t));
+    n=(uint32)(120+r*sin(t));
 
     if(m<256 && n<240)
      XBuf[m+n*256]=3;

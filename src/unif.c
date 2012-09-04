@@ -88,13 +88,13 @@ static void FreeUNIF(void)
 {
  int x;
  if(UNIFchrrama)
-   {free(UNIFchrrama);UNIFchrrama=0;}
+   {free(UNIFchrrama);UNIFchrrama=NULL;}
  if(boardname)
-   {free(boardname);boardname=0;}
+   {free(boardname);boardname=NULL;}
  for(x=0;x<32;x++)
  {
   if(malloced[x])
-    {free(malloced[x]);malloced[x]=0;}
+    {free(malloced[x]);malloced[x]=NULL;}
  }
 }
 

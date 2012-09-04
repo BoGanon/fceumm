@@ -587,6 +587,8 @@ void X6502_Run(int32 cycles)
   #if(defined(C80x86) && defined(__GNUC__))
   /* Gives a nice little speed boost. */
   register uint16 pbackus asm ("edi");
+  #elif(defined(_EE) && defined(__GNUC__))
+  register uint16 pbackus asm ("s0");
   #else
   uint16 pbackus;
   #endif

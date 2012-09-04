@@ -30,7 +30,6 @@ CORE_OBJS =	\
 		../../ppu.o \
 		../../file.o \
 		../../nsf.o \
-		../../netplay.o \
 		../../fceu.o \
 		../../video.o \
 		../../sound.o \
@@ -42,7 +41,6 @@ CORE_OBJS =	\
 		../../md5.o \
 		../../crc32.o \
 		../../general.o \
-		../../movie.o \
 		../../ines.o \
 		../../palette.o \
 		../../fds.o \
@@ -52,6 +50,9 @@ CORE_OBJS =	\
 		../../filter.o \
 		../../unif.o \
 		../../cart.o
+
+#		../../netplay.o \
+#		../../movie.o \
 
 COMMON_OBJS = \
 		../common/cheat.o \

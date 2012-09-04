@@ -31,7 +31,9 @@
 #include "memory.h"
 #include "crc32.h"
 #include "state.h"
+#ifdef MOVIE
 #include "movie.h"
+#endif
 #include "palette.h"
 #include "nsf.h"
 #include "input.h"
@@ -135,7 +137,9 @@ void FCEU_PutImage(void)
    if(FCEUGameInfo->type==GIT_VSUNI)
     FCEU_VSUniDraw(XBuf);
    FCEU_DrawSaveStates(XBuf);
+#ifdef MOVIE
    FCEU_DrawMovies(XBuf);
+#endif
    FCEU_DrawNTSCControlBars(XBuf);
   }
   DrawMessage();

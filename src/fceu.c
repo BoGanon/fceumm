@@ -95,8 +95,8 @@ void FlushGenieRW(void)
   }
   free(AReadG);
   free(BWriteG);
-  AReadG=0;
-  BWriteG=0;
+  AReadG=NULL;
+  BWriteG=NULL;
   RWWrap=0;
  }
 }
@@ -194,33 +194,36 @@ static void CloseGame(void)
 {
  if(FCEUGameInfo)
  {
+#ifdef NETWORK
   if(FCEUnetplay)
    FCEUD_NetworkClose();
+#endif
   if(FCEUGameInfo->name)
   {
    free(FCEUGameInfo->name);
-   FCEUGameInfo->name=0;
+   FCEUGameInfo->name=NULL;
   }
   if(FCEUGameInfo->type!=GIT_NSF)
    FCEU_FlushGameCheats(0,0);
-  GameInterface(GI_CLOSE);
+  if(GameInterface)
+   GameInterface(GI_CLOSE);
   ResetExState(0,0);
   CloseGenie();
   free(FCEUGameInfo);
-  FCEUGameInfo = 0;
+  FCEUGameInfo = NULL;
  }
 }
 
 void ResetGameLoaded(void)
 {
   if(FCEUGameInfo) CloseGame();
-  GameStateRestore=0;
-  PPU_hook=0;
-  GameHBIRQHook=0;
+  GameStateRestore=NULL;
+  PPU_hook=NULL;
+  GameHBIRQHook=NULL;
   if(GameExpSound.Kill)
    GameExpSound.Kill();
   memset(&GameExpSound,0,sizeof(GameExpSound));
-  MapIRQHook=0;
+  MapIRQHook=NULL;
   MMC5Hack=0;
   PAL&=1;
   pale=0;
@@ -260,7 +263,7 @@ FCEUGI *FCEUI_LoadGame(const char *name)
 
   if(!fp)
   {
-    FCEU_PrintError("Error opening \"%s\"!",name);
+   FCEU_PrintError("Error opening \"%s\"!",name);
    return 0;
   }
 
@@ -287,8 +290,9 @@ FCEUGI *FCEUI_LoadGame(const char *name)
 
   PowerNES();
   FCEUSS_CheckStates();
+#ifdef MOVIE
   FCEUMOV_CheckMovies();
-
+#endif
   if(FCEUGameInfo->type!=GIT_NSF)
   {
    FCEU_LoadGamePalette();
@@ -334,8 +338,9 @@ FCEUGI *FCEUI_CopyFamiStart(void)
 
   PowerNES();
   FCEUSS_CheckStates();
+#ifdef MOVIE
   FCEUMOV_CheckMovies();
-
+#endif
   if(FCEUGameInfo->type!=GIT_NSF)
   {
    FCEU_LoadGamePalette();
@@ -395,7 +400,9 @@ void FCEUI_CloseGame(void)
 
 void ResetNES(void)
 {
+#ifdef MOVIE
   FCEUMOV_AddCommand(FCEUNPCMD_RESET);
+#endif
   if(!FCEUGameInfo) return;
   GameInterface(GI_RESETM2);
   FCEUSND_Reset();
@@ -422,7 +429,9 @@ void hand(X6502 *X, int type, unsigned int A)
 
 void PowerNES(void)
 {
+#ifdef MOVIE
   FCEUMOV_AddCommand(FCEUNPCMD_POWER);
+#endif
   if(!FCEUGameInfo) return;
 
   FCEU_CheatResetRAM();

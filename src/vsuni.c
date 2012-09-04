@@ -25,7 +25,9 @@
 #include "x6502.h"
 #include "fceu.h"
 #include "input.h"
+#ifdef NETWORK
 #include "netplay.h"
+#endif
 #include "vsuni.h"
 #include "state.h"
 
@@ -347,7 +349,11 @@ void FCEU_VSUniCheck(uint64 md5partial, int *MapperNo, uint8 *Mirroring)
    secptr = 0;
 
    {
-    static int64 tko=0x6e1ee06171d8ce3aULL, rbi=0x6a02d345812938afULL;
+#ifndef _EE
+    static uint64 tko=0x6e1ee06171d8ce3aULL, rbi=0x6a02d345812938afULL;
+#else
+    static uint64 tko=0x6e1ee06171d8ce3aUL, rbi=0x6a02d345812938afUL;
+#endif
     if(md5partial == tko)
      secptr=secdata[0];
     if(md5partial == rbi)

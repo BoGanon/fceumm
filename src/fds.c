@@ -33,8 +33,9 @@
 #include "memory.h"
 #include "cart.h"
 #include "md5.h"
+#ifdef NETWORK
 #include "netplay.h"
-
+#endif
 /*  TODO:  Add code to put a delay in between the time a disk is inserted
   and the when it can be successfully read/written to.  This should
   prevent writes to wrong places OR add code to prevent disk ejects
@@ -671,7 +672,7 @@ static void FreeFDSMemory(void)
   if(diskdata[x])
   {
    free(diskdata[x]);
-   diskdata[x]=0;
+   diskdata[x]=NULL;
   }
 }
 

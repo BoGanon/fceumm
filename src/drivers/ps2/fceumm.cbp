@@ -434,6 +434,16 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="../common/vidblit.h" />
+		<Unit filename="Makefile" />
+		<Unit filename="Makefile.eeglobal_cpp" />
+		<Unit filename="Makefile.objs" />
+		<Unit filename="main.cpp" />
+		<Unit filename="ps2-core.cpp" />
+		<Unit filename="ps2-file.cpp" />
+		<Unit filename="ps2-input.cpp" />
+		<Unit filename="ps2-network.cpp" />
+		<Unit filename="ps2-render.cpp" />
+		<Unit filename="ps2-sound.cpp" />
 		<Unit filename="../../endian.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -784,62 +794,20 @@
 		</Unit>
 		<Unit filename="../../x6502.h" />
 		<Unit filename="../../x6502struct.h" />
-		<Unit filename="../../zlib/adler32.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="../../zlib/compress.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="../../zlib/crc32.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="../../zlib/deflate.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="../../zlib/deflate.h" />
-		<Unit filename="../../zlib/gzio.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="../../zlib/infblock.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="../../zlib/infblock.h" />
-		<Unit filename="../../zlib/infcodes.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="../../zlib/infcodes.h" />
-		<Unit filename="../../zlib/inffast.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="../../zlib/inffast.h" />
 		<Unit filename="../../zlib/inffixed.h" />
-		<Unit filename="../../zlib/inflate.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="../../zlib/inftrees.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="../../zlib/inftrees.h" />
-		<Unit filename="../../zlib/infutil.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="../../zlib/infutil.h" />
-		<Unit filename="../../zlib/trees.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="../../zlib/trees.h" />
-		<Unit filename="../../zlib/uncompr.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="../../zlib/unzip.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="../../zlib/unzip.h" />
 		<Unit filename="../../zlib/zconf.h" />
 		<Unit filename="../../zlib/zlib.h" />
-		<Unit filename="../../zlib/zutil.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="../../zlib/zutil.h" />
 		<Extensions>
 			<code_completion />

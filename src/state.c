@@ -34,10 +34,14 @@
 #include "fds.h"
 #include "general.h"
 #include "state.h"
+#ifdef MOVIE
 #include "movie.h"
+#endif
 #include "memory.h"
 #include "ppu.h"
+#ifdef NETWORK
 #include "netplay.h"
+#endif
 #include "video.h"
 
 
@@ -402,8 +406,10 @@ void AddExState(void *v, uint32 s, int type, char *desc)
 void FCEUI_SelectState(int w)
 {
  if(w == -1) { StateShow = 0; return; }
- FCEUI_SelectMovie(-1);
 
+#ifdef MOVIE
+ FCEUI_SelectMovie(-1);
+#endif
  CurrentState=w;
  StateShow=180;
  FCEU_DispMessage("-select state-");
@@ -419,13 +425,16 @@ void FCEUI_LoadState(char *fname)
 {
  StateShow=0;
 
+#ifdef MOVIE
  FCEUMOV_Stop();
-
+#endif
+ #ifdef NETWORK
  /* For network play, be load the state locally, and then save the state to a temporary file,
     and send that.  This insures that if an older state is loaded that is missing some
     information expected in newer save states, desynchronization won't occur(at least not
     from this ;)).
  */
+
  if(FCEUSS_Load(fname))
   if(FCEUnetplay)
   {
@@ -444,6 +453,9 @@ void FCEUI_LoadState(char *fname)
    }
    free(fn);
   }
+#else
+ FCEUSS_Load(fname);
+#endif
 
 }
 

@@ -40,8 +40,67 @@ void SexyFilter2(int32 *in, int32 count)
   //in++;
  }
 }
+void SexyFilter216(int16 *in, int32 count)
+{
+ #ifdef moo
+ static int64 acc=0;
+ double x,p;
+ int64 c;
 
-void SexyFilter(int32 *in, int32 *out, int32 count)
+ x=2*M_PI*6000/FSettings.SndRate;
+ p=((double)2-cos(x)) - sqrt(pow((double)2-cos(x),2) -1 );
+
+ c=p*0x100000;
+ //printf("%f\n",(double)c/0x100000);
+ #endif
+ static int64 acc=0;
+
+ while(count--)
+ {
+  int64 dropcurrent;
+  dropcurrent=((*in<<16)-acc)>>3;
+
+  acc+=dropcurrent;
+  *in=acc>>16;
+  in++;
+  //acc=((int64)0x100000-c)* *in + ((c*acc)>>20);
+  //*in=acc>>20;
+  //in++;
+ }
+}
+void SexyFilter(int32 *in, int16 *out, int32 count)
+{
+ static int64 acc1=0,acc2=0;
+ int32 mul1,mul2,vmul;
+
+ mul1=(94<<16)/FSettings.SndRate;
+ mul2=(24<<16)/FSettings.SndRate;
+ vmul=(FSettings.SoundVolume<<16)*3/4/100;
+
+ if(FSettings.soundq) vmul/=4;
+ else vmul*=2;      /* TODO:  Increase volume in low quality sound rendering code itself */
+
+ while(count)
+ {
+  int64 ino=(int64)*in*vmul;
+  acc1+=((ino-acc1)*mul1)>>16;
+  acc2+=((ino-acc1-acc2)*mul2)>>16;
+  //printf("%d ",*in);
+  *in=0;
+  {
+   int32 t=(acc1-ino+acc2)>>16;
+   //if(t>32767 || t<-32768) printf("Flow: %d\n",t);
+   if(t>32767) t=32767;
+   if(t<-32768) t=-32768;
+   *out=t;
+  }
+  in++;
+  out++;
+  count--;
+ }
+}
+
+void SexyFilter16(int16 *in, int16 *out, int32 count)
 {
  static int64 acc1=0,acc2=0;
  int32 mul1,mul2,vmul;
@@ -85,11 +144,11 @@ void SexyFilter(int32 *in, int32 *out, int32 count)
    code to be higher, or you *might* overflow the FIR code.
 */
 
-int32 NeoFilterSound(int32 *in, int32 *out, uint32 inlen, int32 *leftover)
+int32 NeoFilterSound(int32 *in, int16 *out, uint32 inlen, int32 *leftover)
 {
   uint32 x;
   uint32 max;
-  int32 *outsave=out;
+  int16 *outsave=out;
   int32 count=0;
 
 //  for(x=0;x<inlen;x++)
@@ -151,9 +210,10 @@ int32 NeoFilterSound(int32 *in, int32 *out, uint32 inlen, int32 *leftover)
   if(GameExpSound.NeoFill)
    GameExpSound.NeoFill(outsave,count);
 
-  SexyFilter(outsave,outsave,count);
+  // Not used
+  SexyFilter16(outsave,outsave,count);
   if(FSettings.lowpass)
-   SexyFilter2(outsave,count);
+   SexyFilter216(outsave,count);
   return(count);
 }
 

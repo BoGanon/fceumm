@@ -129,6 +129,8 @@ void ApplyIPS(FILE *ips, MEMWRAP *dest)
  FCEU_printf(" Hard IPS end!\n");
 }
 
+// returns NULL on failure
+// closes file pointer
 static MEMWRAP *MakeMemWrap(void *tz, int type)
 {
  MEMWRAP *tmp;
@@ -203,7 +205,8 @@ static MEMWRAP *MakeMemWrap(void *tz, int type)
 
 FCEUFILE * FCEU_fopen(const char *path, const char *ipsfn, char *mode, char *ext)
 {
- FILE *ipsfile=0;
+  unzFile tz;
+ FILE *ipsfile=NULL;
  FCEUFILE *fceufp;
  void *t;
 
@@ -212,67 +215,78 @@ FCEUFILE * FCEU_fopen(const char *path, const char *ipsfn, char *mode, char *ext
 
  fceufp=(FCEUFILE *)malloc(sizeof(FCEUFILE));
 
+ if(!fceufp)
  {
-  unzFile tz;
-  if((tz=unzOpen(path)))  // If it's not a zip file, use regular file handlers.
-        // Assuming file type by extension usually works,
-        // but I don't like it. :)
+ 	return NULL;
+ }
+ // zip
+ // If it's not a zip file, use regular file handlers.
+ // Assuming file type by extension usually works,
+ // but I don't like it. :)
+ if((tz=unzOpen(path)))
+ {
+  if(unzGoToFirstFile(tz)==UNZ_OK)
   {
-   if(unzGoToFirstFile(tz)==UNZ_OK)
+   for(;;)
    {
-    for(;;)
-    {
-     char tempu[512];  // Longer filenames might be possible, but I don't
-       // think people would name files that long in zip files...
-     unzGetCurrentFileInfo(tz,0,tempu,512,0,0,0,0);
-     tempu[511]=0;
-     if(strlen(tempu)>=4)
-     {
-      char *za=tempu+strlen(tempu)-4;
+    // Longer filenames might be possible, but I don't
+    // think people would name files that long in zip files...
+    char tempu[512];
 
-      if(!ext)
-      {
-       if(!strcasecmp(za,".nes") || !strcasecmp(za,".fds") ||
-        !strcasecmp(za,".nsf") || !strcasecmp(za,".unf") ||
-		!strcasecmp(za,".nez"))
-        break;
-      }
-      else if(!strcasecmp(za,ext))
+    unzGetCurrentFileInfo(tz,0,tempu,512,0,0,0,0);
+    tempu[511]=0;
+    if(strlen(tempu)>=4)
+    {
+     char *za=tempu+strlen(tempu)-4;
+
+     if(!ext)
+     {
+      if(!strcasecmp(za,".nes") || !strcasecmp(za,".fds") ||
+       !strcasecmp(za,".nsf") || !strcasecmp(za,".unf") ||
+	   !strcasecmp(za,".nez"))
        break;
      }
-     if(strlen(tempu)>=5)
-     {
-      if(!strcasecmp(tempu+strlen(tempu)-5,".unif"))
-       break;
-     }
-     if(unzGoToNextFile(tz)!=UNZ_OK)
-     {
-      if(unzGoToFirstFile(tz)!=UNZ_OK) goto zpfail;
+     else if(!strcasecmp(za,ext))
       break;
-     }
     }
-    if(unzOpenCurrentFile(tz)!=UNZ_OK)
-     goto zpfail;
+    if(strlen(tempu)>=5)
+    {
+     if(!strcasecmp(tempu+strlen(tempu)-5,".unif"))
+      break;
+    }
+    if(unzGoToNextFile(tz)!=UNZ_OK)
+    {
+     if(unzGoToFirstFile(tz)!=UNZ_OK) goto zpfail;
+     break;
+    }
    }
-   else
-   {
-    zpfail:
-    free(fceufp);
-    unzClose(tz);
-    return 0;
-   }
-   if(!(fceufp->fp=MakeMemWrap(tz,2)))
-   {
-    free(fceufp);
-    return(0);
-   }
-   fceufp->type=2;
-   if(ipsfile)
-    ApplyIPS(ipsfile,(MEMWRAP *)fceufp->fp);
-   return(fceufp);
+   if(unzOpenCurrentFile(tz)!=UNZ_OK)
+    goto zpfail;
   }
+  else
+  {
+   zpfail:
+   free(fceufp);
+   unzClose(tz);
+   return NULL;
+  }
+
+  // zip extraction successful
+  if(!(fceufp->fp=MakeMemWrap(tz,2)))
+  {
+   free(fceufp);
+   return NULL;
+  }
+
+  fceufp->type=3;
+
+  if(ipsfile)
+   ApplyIPS(ipsfile,(MEMWRAP *)fceufp->fp);
+
+  return(fceufp);
  }
 
+ // gzip
  if((t=FCEUD_UTF8fopen(path,"rb")))
  {
   uint32 magic;
@@ -281,65 +295,57 @@ FCEUFILE * FCEU_fopen(const char *path, const char *ipsfn, char *mode, char *ext
   magic|=fgetc((FILE *)t)<<8;
   magic|=fgetc((FILE *)t)<<16;
 
-  if(magic!=0x088b1f)   /* Not gzip... */
-   fclose((FILE *)t);
-  else      /* Probably gzip */
+  fclose((FILE *)t);
+
+  // Probably gzip but don't fail if it fails to open
+  if(magic==0x088b1f)
   {
-/*
-   int fd;
-
-   fd = dup(fileno( (FILE *)t));
-
-   fclose(t);
-
-   lseek(fd, 0, SEEK_SET);
-
-   if((t=gzdopen(fd,mode)))
+   if((t=gzopen(path,mode)))
    {
     fceufp->type=1;
-    fceufp->fp=t;
-    if(ipsfile)
-    {
-     fceufp->fp=MakeMemWrap(t,1);
-     gzclose((gzFile)t);
 
-     if(fceufp->fp)
-     {
-      free(fceufp);
-      return(0);
-     }
-
-     fceufp->type=3;
-     ApplyIPS(ipsfile,(MEMWRAP *)fceufp->fp);
-    }
-    return(fceufp);
-   }
-*/
-   fclose((FILE*)t);
-  }
-
- }
-
-  if((t=FCEUD_UTF8fopen(path,mode)))
-  {
-   fseek((FILE *)t,0,SEEK_SET);
-   fceufp->type=0;
-   fceufp->fp=t;
-   if(ipsfile)
-   {
-    if(!(fceufp->fp=MakeMemWrap(t,0)))
+	// closes the file
+	if(!(fceufp->fp=MakeMemWrap(t,1)));
     {
      free(fceufp);
-     return(0);
+     return NULL;
     }
+
     fceufp->type=3;
-    ApplyIPS(ipsfile,(MEMWRAP *)fceufp->fp);
+
+	if(ipsfile)
+     ApplyIPS(ipsfile,(MEMWRAP *)fceufp->fp);
+
+    return(fceufp);
    }
-   return(fceufp);
+  }
+ }
+
+ // uncompressed file
+ if((t=FCEUD_UTF8fopen(path,mode)))
+ {
+  fseek((FILE *)t,0,SEEK_SET);
+  fceufp->type=0;
+
+  if(!(fceufp->fp=MakeMemWrap(t,0)))
+  {
+   free(fceufp);
+   return NULL;
   }
 
+  fceufp->type=3;
+
+  if(ipsfile)
+  {
+   ApplyIPS(ipsfile,(MEMWRAP *)fceufp->fp);
+  }
+
+  return(fceufp);
+ }
+
+ // nothing worked
  free(fceufp);
- return 0;
+ return NULL;
 }
 
 int FCEU_fclose(FCEUFILE *fp)
@@ -462,7 +468,7 @@ void FCEU_rewind(FCEUFILE *fp)
  }
  else
   /* Rewind */
-  fseek((FILE*)fp->fp,0,SEEK_SET);
+  fseek((FILE *)fp->fp,0,SEEK_SET);
 }
 
 int FCEU_read16le(uint16 *val, FCEUFILE *fp)

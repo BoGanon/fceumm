@@ -218,7 +218,7 @@ void FCEU_LoadGamePalette(void)
    }
    ipalette=1;
   }
-  free(fn);
+  if(fn) free(fn);
 }
 
 void FCEU_ResetPalette(void)

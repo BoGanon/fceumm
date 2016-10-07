@@ -41,24 +41,35 @@
 
 uint8 *XBuf=NULL;
 static uint8 *xbsave=NULL;
+static char custom_xb = 0;
 
 void FCEU_KillVirtualVideo(void)
 {
- if(xbsave)
+ if(!custom_xb)
  {
-  free(xbsave);
-  xbsave=0;
+  if(xbsave)
+  {
+   free(xbsave);
+   xbsave=NULL;
+  }
  }
 }
 
 int FCEU_InitVirtualVideo(void)
 {
- if(!XBuf)    /* Some driver code may allocate XBuf externally. */
-      /* 256 bytes per scanline, * 240 scanline maximum, +8 for alignment,
-      */
- if(!(XBuf= (uint8*) (FCEU_malloc(256 * 256 + 8))))
-  return 0;
- xbsave=XBuf;
+ /* Some driver code may allocate XBuf externally. */
+ /* 256 bytes per scanline, * 240 scanline maximum, +8 for alignment,
+ */
+ if(!XBuf)
+ {
+  if(!(XBuf= (uint8*) (FCEU_malloc(256 * 256 + 8))))
+   return 0;
+  xbsave=XBuf;
+ }
+ else
+ {
+ 	custom_xb = 1;
+ }
 
  if(sizeof(uint8*)==4)
  {
@@ -88,7 +99,9 @@ void FCEU_PutImageDummy(void)
  {
   FCEU_DrawNTSCControlBars(XBuf);
   FCEU_DrawSaveStates(XBuf);
+#ifdef MOVIE
   FCEU_DrawMovies(XBuf);
+#endif
  }
  if(howlong) howlong--; /* DrawMessage() */
 }
@@ -108,7 +121,9 @@ static void ReallySnap(void)
  else
   FCEU_DispMessage("Screen snapshot %d saved.",x-1);
 }
-
+#ifdef SHOWFPS
+void ShowFPS();
+#endif
 void FCEU_PutImage(void)
 {
   #ifdef SHOWFPS
@@ -201,7 +216,7 @@ int SaveSnapshot(void)
 {
  static unsigned int lastu=0;
 
- char *fn=0;
+ char *fn=NULL;
  int totallines=FSettings.LastSLine-FSettings.FirstSLine+1;
  int x,u,y;
  FILE *pp=NULL;
@@ -222,10 +237,10 @@ int SaveSnapshot(void)
 
  if(!(pp=FCEUD_UTF8fopen(fn,"wb")))
  {
-  free(fn);
+  if(fn) free(fn);
   return 0;
  }
- free(fn);
+ if(fn) free(fn);
  {
   static uint8 header[8]={137,80,78,71,13,10,26,10};
   if(fwrite(header,8,1,pp)!=1)

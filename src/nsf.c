@@ -406,7 +406,8 @@ void DrawNSF(uint8 *XBuf)
 
 
  {
-  int32 *Bufpl;
+  // Bufpl might not need the 8 right shift anymore
+  int16 *Bufpl;
   int32 mul=0;
 
   int l;

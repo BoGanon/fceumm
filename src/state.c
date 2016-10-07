@@ -275,7 +275,7 @@ void FCEUSS_Save(char *fname)
   else
   {
    st=FCEUD_UTF8fopen(fn=FCEU_MakeFName(FCEUMKF_STATE,CurrentState,0),"wb");
-   free(fn);
+   if(fn) free(fn);
   }
 
   if(st == NULL)
@@ -334,7 +334,7 @@ int FCEUSS_Load(char *fname)
   else
   {
    st=FCEUD_UTF8fopen(fn=FCEU_MakeFName(FCEUMKF_STATE,CurrentState,fname),"rb");
-   free(fn);
+   if(fn) free(fn);
   }
 
   if(st == NULL)
@@ -370,7 +370,7 @@ void FCEUSS_CheckStates(void)
   for(ssel=0;ssel<10;ssel++)
   {
    st=FCEUD_UTF8fopen(fn=FCEU_MakeFName(FCEUMKF_STATE,ssel,0),"rb");
-   free(fn);
+   if(fn) free(fn);
    if(st)
    {
     SaveStateStatus[ssel]=1;
@@ -451,7 +451,7 @@ void FCEUI_LoadState(char *fname)
     else fclose(fp);
     unlink(fn);
    }
-   free(fn);
+   if(fn) free(fn);
   }
 #else
  FCEUSS_Load(fname);

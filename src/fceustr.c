@@ -22,9 +22,12 @@ fceustr *fceustr_create(const char *str)
 
 void fceustr_destroy(fceustr *str)
 {
- if(str->data)
+ if(str)
  {
-   free(str->data);
+  if(str->data)
+  {
+    free(str->data);
+  }
+  free(str);
  }
- free(str);
 }

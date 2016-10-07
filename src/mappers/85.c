@@ -46,9 +46,9 @@ void DoVRC7Sound(void)
  dwave+=a;
 }
 
-void UpdateOPLNEO(int32 *Wave, int Count)
+void UpdateOPLNEO(int16 *tmp, int Count)
 {
- moocow(VRC7Sound, Wave, Count, 4);
+ moocow16(VRC7Sound, tmp, Count, 4);
 }
 
 void UpdateOPL(int Count)

@@ -1007,6 +1007,16 @@ void moocow(OPLL* opll, e_int32 *buf, e_int32 len, int shift)
  }
 }
 
+void moocow16(OPLL* opll, e_int16 *buf, e_int32 len, int shift)
+{
+ while(len > 0)
+ {
+  *buf+=(calc(opll)+32768)<<shift;
+  buf++;
+  len--;
+ }
+}
+
 #ifdef EMU2413_COMPACTION
 e_int16
 OPLL_calc (OPLL * opll)

@@ -126,6 +126,7 @@ EMU2413_API e_uint32 OPLL_toggleMask(OPLL *, e_uint32 mask) ;
 
 
 void moocow(OPLL* opll, e_int32 *buf, e_int32 len, int shift);
+void moocow16(OPLL* opll, e_int16 *buf, e_int32 len, int shift);
 
 #ifdef __cplusplus
 }

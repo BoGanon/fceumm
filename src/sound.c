@@ -37,7 +37,7 @@ static uint32 wlookup2[203];
 
 int32 Wave[2048+512];
 int32 WaveHi[40000];
-int32 WaveFinal[2048+512];
+int16 WaveFinal[2048+512];
 
 EXPSOUND GameExpSound={0,0,0};
 
@@ -1001,6 +1001,8 @@ int FlushEmulateSound(void)
   DoNoise();
   DoPCM();
 
+  // Sounds bad with 16-bit WaveFinal
+  // Could probably fix with 32-bit aligned pointer that points to either 16-bit or 32-bit array
   if(FSettings.soundq>=1)
   {
    int32 *tmpo=&WaveHi[soundtsoffs];
@@ -1058,7 +1060,7 @@ int FlushEmulateSound(void)
   return(end);
 }
 
-int GetSoundBuffer(int32 **W)
+int GetSoundBuffer(int16 **W)
 {
  *W=WaveFinal;
  return(inbuf);

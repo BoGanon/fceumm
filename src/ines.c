@@ -556,7 +556,7 @@ int iNESLoad(const char *name, FCEUFILE *fp)
 
   FCEU_printf(" PRG ROM:  %3d x 16KiB\n",ROM_size);
   FCEU_printf(" CHR ROM:  %3d x  8KiB\n",head.VROM_size);
-  FCEU_printf(" ROM CRC32:  0x%08lx\n",iNESGameCRC32);
+  FCEU_printf(" ROM CRC32:  0x%08x\n",iNESGameCRC32);
   FCEU_printf(" ROM MD5:  0x%s\n",md5_asciistr(iNESCart.MD5));
   FCEU_printf(" Mapper:  %d\n", MapperNo);
   FCEU_printf(" Mirroring: %s\n", Mirroring==2?"None(Four-screen)":Mirroring?"Vertical":"Horizontal");

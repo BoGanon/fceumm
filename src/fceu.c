@@ -259,7 +259,7 @@ FCEUGI *FCEUI_LoadGame(const char *name)
 
   ipsfn=FCEU_MakeFName(FCEUMKF_IPS,0,0);
   fp=FCEU_fopen(name,ipsfn,"rb",0);
-  free(ipsfn);
+  if(ipsfn) free(ipsfn);
 
   if(!fp)
   {
@@ -374,7 +374,7 @@ void FCEUI_Kill(void)
  FCEU_KillGenie();
 }
 
-void FCEUI_Emulate(uint8 **pXBuf, int32 **SoundBuf, int32 *SoundBufSize, int skip)
+void FCEUI_Emulate(uint8 **pXBuf, int16 **SoundBuf, int32 *SoundBufSize, int skip)
 {
  int r,ssize;
 

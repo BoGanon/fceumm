@@ -6,8 +6,9 @@ EE_BIN = fceumm.elf
 EE_INCS = -I./ -I../ -I../../ -I../../boards -I../../fir -I../../input -I../../mappers \
 	-I../../palettes -I../../utils -I./interface/include -I$(PS2SDK)/ports/include
 
-EE_CFLAGS = $(FCEU_FLAGS)
-EE_CXXFLAGS = -DSOUND_ON $(FCEU_FLAGS) -fno-rtti -fno-exceptions
+OPTI_FLAGS = -mtune=r5900 -fshort-double -msingle-float -mhard-float -mfused-madd -ffast-math -mno-check-zero-division
+EE_CFLAGS = $(OPTI_FLAGS) $(FCEU_FLAGS)
+EE_CXXFLAGS = $(OPTI_FLAGS) -DSOUND_ON $(FCEU_FLAGS) -fno-rtti -fno-exceptions
 
 EE_OBJS = $(ZLIB_OBJS) $(BOARDS_OBJS) $(MAPPERS_OBJS) $(INPUT_OBJS) \
 		$(CORE_OBJS) $(INTERFACE_OBJS) $(DRIVER_OBJS)

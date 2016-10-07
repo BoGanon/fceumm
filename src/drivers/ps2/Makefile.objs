@@ -34,7 +34,6 @@ CORE_OBJS =	\
 		../../video.o \
 		../../sound.o \
 		../../x6502.o \
-		../../debug.o \
 		../../endian.o \
 		../../fceustr.o \
 		../../state.o \
@@ -53,6 +52,7 @@ CORE_OBJS =	\
 
 #		../../netplay.o \
 #		../../movie.o \
+#		../../debug.o \
 
 COMMON_OBJS = \
 		../common/cheat.o \

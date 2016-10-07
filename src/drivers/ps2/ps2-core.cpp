@@ -11,11 +11,12 @@ void FCEUD_Message(const char *s)
     printf("%s",s);
 }
 
-uint64 FCEUD_GetTime(void)
+extern "C" uint64 FCEUD_GetTime(void)
 {
     return clock();
 }
-uint64 FCEUD_GetTimeFreq(void)
+
+extern "C" uint64 FCEUD_GetTimeFreq(void)
 {
 	return 576000;
 }
